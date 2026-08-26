@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 30px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Employee List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Se.no.</th>
+                <th>Name</th>
+                <th>emp_ID</th>
+                <th>mobile no.</th>
+            </tr>
+        </thead>
+
+        <tbody id="employeeTable">
+            <!-- Data will come from API -->
+        </tbody>
+    </table>
+
+
+    <script>
+
+        fetch('/api/employees/')
+            .then(response => response.json())
+            .then(data => {
+
+                const table = document.getElementById('employeeTable');
+
+                data.forEach(employee => {
+
+                    const row = `
+                        <tr>
+                            <td>${employee.id}</td>
+                            <td>${employee.name}</td>
+                            <td>${employee.email}</td>
+                            <td>${employee.department}</td>
+                            <td>${employee.salary}</td>
+                        </tr>
+                    `;
+
+                    table.innerHTML += row;
+                });
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+    </script>
+
+</body>
+</html>
