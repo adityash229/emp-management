@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url (
+    'default': dj_database_url.parse (
         os.environ.get("DATABASE_URL", "")
     )
 }
