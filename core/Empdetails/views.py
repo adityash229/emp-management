@@ -75,6 +75,10 @@ class EmpUpdatedetails(APIView):
 
 
 class EmpDeletedetails(APIView):
+    def get(self, request):
+                employees = Employee.objects.all()
+                serializer = EmployeeSerializer(employees, many=True)
+                return Response(serializer.data)
 
     def delete(self, request, pk):
 
