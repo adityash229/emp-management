@@ -42,8 +42,8 @@ class EmpGetdetails(APIView):
         return Response(serializer.data) 
     
 class EmpUpdatedetails(APIView):
-    def get(self, request):
-            employees = Employee.objects.all()
+    def get(self, request,pk):
+            employees = Employee.objects.all(pk=pk)
             serializer = EmployeeSerializer(employees, many=True)
             return Response(serializer.data)
 
@@ -75,8 +75,8 @@ class EmpUpdatedetails(APIView):
 
 
 class EmpDeletedetails(APIView):
-    def get(self, request):
-                employees = Employee.objects.all()
+    def get(self, request, pk):
+                employees = Employee.objects.all(pk=pk)
                 serializer = EmployeeSerializer(employees, many=True)
                 return Response(serializer.data)
 
